@@ -10,10 +10,23 @@ let COURSES = [];
 // Admin routes
 app.post('/admin/signup', (req, res) => {
   // logic to sign up admin
+  let {username, password} = req.body;
+  if(ADMINS.findIndex((admin) => admin.username === username) < 0) {
+    ADMINS.push({username, password});
+    res.status(201).json({message: 'Admin created successfully' });
+  } else {
+    res.status(400).send('Username already exists.');
+  }
 });
 
 app.post('/admin/login', (req, res) => {
   // logic to log in admin
+  let {username, password} = req.headers;
+  if(ADMINS.findIndex((admin) => admin.username == username && admin.password == password) > -1) {
+    res.status(200).json({ message: 'Logged in successfully' });
+  } else {
+    res.status(401).send('Unauthorized');
+  }
 });
 
 app.post('/admin/courses', (req, res) => {
@@ -52,3 +65,5 @@ app.get('/users/purchasedCourses', (req, res) => {
 app.listen(3000, () => {
   console.log('Server is listening on port 3000');
 });
+
+module.exports = app;

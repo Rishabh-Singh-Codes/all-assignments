@@ -147,7 +147,7 @@ app.get('/users/purchasedCourses', (req, res) => {
   if(userIndex > -1) {
     res.status(200).json({ purchasedCourses: USERS[userIndex].purchasedCourses});
   } else {
-    res.status(401).send('Unauthorized');
+    res.status(403).send('Unauthorized');
   }
 });
 

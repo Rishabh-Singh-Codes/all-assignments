@@ -232,7 +232,7 @@ app.get('/users/purchasedCourses', userAuth, async (req, res) => {
 });
 
 //mongoDB connection
-mongoose.connect('mongodb+srv://rishabh:rishabh@cluster0.cx2xf0g.mongodb.net/courseDB')
+mongoose.connect('')
 .then(() => {
   app.listen(3000, () => {
     console.log('Server is listening on port 3000');
